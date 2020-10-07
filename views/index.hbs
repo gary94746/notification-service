@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+  </head>
+  <body>
+    {{ message }}
+    <script>
+      window.addEventListener('load', async () => {
+        const sw = await navigator.serviceWorker.register('/sw.js'); // done
+        await subscribe(); // we are here!
+
+        console.log('ready to receive web push');
+      });
+
+      const subscribe = async () => {
+        const serviceWorker = await navigator.serviceWorker.ready; // 1
+        const subscription = await serviceWorker.pushManager.getSubscription(); // 2
+
+        if (!subscription) {
+          console.log('subscribing....');
+          const push = await serviceWorker.pushManager.subscribe({
+            // 3
+            userVisibleOnly: true,
+            applicationServerKey:
+              'BH62_hB1xJkNStldvYR6vc-50ksX3bTImdCXw2eCZYlrBLxAH9sVOf7TfIL79zUGQOLVuWc2tr_UG3NlWXjipik',
+          });
+          console.log('subscribed. ', push);
+
+          await sendToServer(push);
+        }
+      };
+
+      const sendToServer = async subData => {
+        await fetch('/subscribe', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({ sub: subData }),
+        });
+      };
+    </script>
+  </body>
+</html>
