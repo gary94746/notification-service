@@ -1,16 +1,17 @@
 import { Controller, Get, Body, Post, Render, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 import * as webpush from 'web-push';
+import { ConfigService } from '@nestjs/config';
 
 @Controller()
 export class AppController {
-  publicVapid =
-    'BH62_hB1xJkNStldvYR6vc-50ksX3bTImdCXw2eCZYlrBLxAH9sVOf7TfIL79zUGQOLVuWc2tr_UG3NlWXjipik';
-  privateVapid = 'u5zA2UvqMxK5Qh_IyXRFlCU4TNoQ11B4FbzHfZYDInA';
+  publicVapid = this.configService.get<string>('PUBLIC_VAPID_KEY');
+  privateVapid = this.configService.get<string>('PRIVATE_VAPID_KEY');
 
-  clientList: any[] = [];
-
-  constructor(private readonly appService: AppService) {
+  constructor(
+    private readonly appService: AppService,
+    private readonly configService: ConfigService,
+  ) {
     webpush.setVapidDetails(
       'mailto:example@yourdomain.org',
       this.publicVapid,
