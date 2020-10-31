@@ -7,12 +7,12 @@ First generate your pair of vapid keys, this will return an object with public a
 const vapidKeys = webpush.generateVAPIDKeys();
 ```
 
-This application doesn't store the token persistant, simple explain porpouse only
-
 
 The result is like:
 ![Screenshot](https://github.com/gary94746/notification-service/blob/main/screenshots/1.png)
 ![Screenshot 1](https://github.com/gary94746/notification-service/blob/main/screenshots/2.png)
+
+Note: Esta aplicación no almacena el token persistente, solo con un propósito de explicación simple
 
 ## Installation
 
