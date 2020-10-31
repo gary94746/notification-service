@@ -1,16 +1,13 @@
 # Information
 
-## Microservices
+Simple web-push-notifications service in NestJs
 
-- cliente-servicio: 3001
-- general-servicio: 3002
-- curso-servicio: 3003
-- provedor-servicio: 3004
-- coordinador-servicio: 3005
-- seguridad-servicio: 3006
-- notificacion-servicio: 3007
+First generate your pair of vapid keys, this will return an object with public and private key, replace them in .env file, also replace publicKey in views/index.hbs on line 47 
+```js
+const vapidKeys = webpush.generateVAPIDKeys();
+```
 
-## Cada uno de los participantes debe trabajar en su propia rama
+This application doesn't store the token persistant, simple explain porpouse only
 
 ## Installation
 
