@@ -6,6 +6,14 @@
   </head>
   <body>
     {{ message }}
+    <form action="/" method="POST">
+      <label for="title">Title:</label><br />
+      <input type="text" name="title" /><br />
+      <label for="lname">Body:</label><br />
+      <input type="text" name="body" /><br /><br />
+      <input type="submit" value="Submit" />
+    </form>
+
     <script>
       window.addEventListener('load', async () => {
         const sw = await navigator.serviceWorker.register('/sw.js'); // done

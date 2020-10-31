@@ -1,4 +1,12 @@
-import { Controller, Get, Body, Post, Render, Res } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Body,
+  Post,
+  Render,
+  Res,
+  Redirect,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import * as webpush from 'web-push';
 
@@ -24,23 +32,22 @@ export class AppController {
   }
 
   @Post()
+  @Render('index')
   async sendNotification(@Body() msg) {
-    const { title, body } = msg;
+    const { title = 'No title', body = 'No body' } = msg;
     try {
-      const all = this.clientList.map(async e => {
-        await webpush.sendNotification(e, JSON.stringify({ title, body }));
+      this.clientList.map(e => {
+        webpush.sendNotification(e, JSON.stringify({ title, body }));
       });
-
-      Promise.all(all);
     } catch (e) {
-      console.log(e);
+      return { message: 'Error, check notification permitions' };
     }
   }
 
   @Get()
   @Render('index')
   root() {
-    return { message: 'Test notifications' };
+    return { message: 'Simple app notitication' };
   }
 
   @Get('sw')
