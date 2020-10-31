@@ -12,7 +12,7 @@ The result is like:
 ![Screenshot](https://github.com/gary94746/notification-service/blob/main/screenshots/1.png)
 ![Screenshot 1](https://github.com/gary94746/notification-service/blob/main/screenshots/2.png)
 
-Note: Esta aplicación no almacena el token persistente, solo con un propósito de explicación simple
+Note: This application does not store the token persistent, simple explain purpose only
 
 ## Installation
 
