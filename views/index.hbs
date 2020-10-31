@@ -5,6 +5,8 @@
     <title></title>
   </head>
   <body>
+    <h1>{{ message }}</h1>
+    <h1 style="color: gray">Your token will be deleted on server restart c:</h1>
     <form
       action="/"
       method="POST"
@@ -42,7 +44,7 @@
           const push = await serviceWorker.pushManager.subscribe({
             userVisibleOnly: true,
             applicationServerKey:
-              'BH62_hB1xJkNStldvYR6vc-50ksX3bTImdCXw2eCZYlrBLxAH9sVOf7TfIL79zUGQOLVuWc2tr_UG3NlWXjipik',
+              'BH62_hB1xJkNStldvYR6vc-50ksX3bTImdCXw2eCZYlrBLxAH9sVOf7TfIL79zUGQOLVuWc2tr_UG3NlWXjipik', // change your key here!
           });
 
           await sendToServer(push);
@@ -99,6 +101,12 @@
         margin: auto;
         width: 50%;
         margin-top: 2em;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 1.5em;
+        color: red;
       }
     </style>
   </body>

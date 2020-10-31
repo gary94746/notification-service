@@ -27,13 +27,19 @@ export class AppController {
   @Post()
   @Render('index')
   async sendNotification(@Body() msg: any) {
-    const { title = 'No title', body = 'No body' } = msg;
+    const { title, body } = msg;
+    const notification = this.appService.createNotification(title, body);
 
-    return this.appService
-      .getTokens()
-      .map(token =>
-        webpush.sendNotification(token, JSON.stringify({ title, body })),
-      );
+    try {
+      this.appService
+        .getTokens()
+        .map(token =>
+          webpush.sendNotification(token, JSON.stringify(notification)),
+        );
+      return { message: 'New notification' };
+    } catch (e) {
+      return { message: 'Notification fail' };
+    }
   }
 
   @Get()

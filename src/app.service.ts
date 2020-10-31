@@ -11,4 +11,15 @@ export class AppService {
   getTokens() {
     return this.tokens;
   }
+
+  replaceIfEmpty(prop: string, optionalTitle: string) {
+    return prop && prop.trim() != '' ? prop : optionalTitle;
+  }
+
+  createNotification(title: string, body: string) {
+    return {
+      title: this.replaceIfEmpty(title, 'No title'),
+      body: this.replaceIfEmpty(body, 'No body'),
+    };
+  }
 }
