@@ -9,6 +9,11 @@ const vapidKeys = webpush.generateVAPIDKeys();
 
 This application doesn't store the token persistant, simple explain porpouse only
 
+
+The result is like:
+![Screenshot](https://github.com/gary94746/notification-service/blob/main/screenshots/1.png)
+![Screenshot 1](https://github.com/gary94746/notification-service/blob/main/screenshots/2.png)
+
 ## Installation
 
 ```bash
